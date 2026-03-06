@@ -5,14 +5,15 @@ const TypeName = require('../../models/TypeName');
 
 module.exports = {
     
-    /*
+    
     Query: {
         //inside here would go all your queries
+        
     },
 
     Mutation: {
         // inside here would go all your mutations
     }
-    */
+    
 
 }

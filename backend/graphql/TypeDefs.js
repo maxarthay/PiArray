@@ -34,7 +34,7 @@ const typeDefs = gql`
     # write your code here!
 
     type RaspberryPi {
-        id: ID!
+        id: ID
         name: String!
         model: String!
         group: Group
@@ -46,7 +46,7 @@ const typeDefs = gql`
     }
 
     type Group {
-        id: ID!
+        id: ID
         name: String!
         description: String
 
@@ -56,20 +56,17 @@ const typeDefs = gql`
     type Query {
         fleet: [RaspberryPi]
         pi(id: ID!): RaspberryPi
+        group: [Group]
     }
 
     type Mutation {
-        registerPi(id: ID!, name: String!, model: String!): RaspberryPi
+        registerPi(id: ID!, name: String!, model: String!, groupId: ID): RaspberryPi
         removePi(id: ID!): RaspberryPi
         rebootPi(id: ID!): Boolean
         changeOnlineStatus(id: ID!, isOnline: Boolean!): Boolean
         runScript(id: ID!, script: String!): String
     }
     
-    # You can add more types, queries, and mutations here.
-    # For example, if you have a 'Post' and 'User' type:
-    # type Post { ... }
-    # type User { ... }
 `;
 
 module.exports = typeDefs;

@@ -3,28 +3,29 @@
 
 // rename it according to whatever types you are using!
 
-/* 
+
 
 // here go each of the different data types:
 
-const artistResolvers = require('./artist');
-const userResolvers = require('./user');
-const postResolvers = require('./post');
-
+const piResolvers = require('./RaspberryPi');
+const groupResolvers = require('./Group');
 
 module.exports = {
 
 
     Query: {
-        ...artistResolvers.Query,
-        ...userResolvers.Query,
-        ...postResolvers.Query
+        ...piResolvers.Query,
+        ...groupResolvers.Query
     },
     Mutation: {
-        ...artistResolvers.Mutation,
-        ...userResolvers.Mutation,
-        ...postResolvers.Mutation
+        ...piResolvers.Mutation,
+        ...groupResolvers.Mutation
+    },
+    RaspberryPi: {
+        ...piResolvers.RaspberryPi
+    },
+    Group: {
+        ...groupResolvers.Group
     }
 };
-*/
 
