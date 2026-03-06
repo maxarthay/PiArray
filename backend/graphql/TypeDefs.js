@@ -33,7 +33,39 @@ const typeDefs = gql`
 
     # write your code here!
 
+    type RaspberryPi {
+        id: ID!
+        name: String!
+        model: String!
+        group: Group
+        ipAddress: String!
+        isOnline: Boolean!
+        currScript: String
+        cpuUsage: Int!
+        uptime: Int
+    }
 
+    type Group {
+        id: ID!
+        name: String!
+        description: String
+
+        devices: [RaspberryPi] # get array of RPis
+    }
+    
+    type Query {
+        fleet: [RaspberryPi]
+        pi(id: ID!): RaspberryPi
+    }
+
+    type Mutation {
+        registerPi(id: ID!, name: String!, model: String!): RaspberryPi
+        removePi(id: ID!): RaspberryPi
+        rebootPi(id: ID!): Boolean
+        changeOnlineStatus(id: ID!, isOnline: Boolean!): Boolean
+        runScript(id: ID!, script: String!): String
+    }
+    
     # You can add more types, queries, and mutations here.
     # For example, if you have a 'Post' and 'User' type:
     # type Post { ... }
