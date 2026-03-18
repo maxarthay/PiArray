@@ -1,38 +1,40 @@
-// index.js is the entry point of your backend application.
-// It sets up the Express server, connects to the MongoDB database,
-// and configures the Apollo GraphQL server.
-
-
-/*
-
-//this is calling all the libraries and APIs we will be using
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
-
-// Import your MongoDB connection URI from the config file.
 const { MONGODB_URI } = require('./config');
-
-// Import the GraphQL schema definitions and resolvers.
 const typeDefs = require('./graphql/TypeDefs');
 const resolvers = require('./graphql/resolvers');
 
-// Initialize the Express and Apollo Server instances.
-// Then start the server with a function
 
+const app = express();
+const port = 3000;
 
-*/
+async function startServer() {
+  // 1. Initialize Apollo Server
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+  });
 
-const express = require('express')
-const app = express()
-const port = 3000
+  // 2. Start Apollo Server
+  await server.start();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+  // 3. Connect Apollo to Express
+  // This essentially creates the /graphql endpoint where the UI can send requests
+  server.applyMiddleware({ app });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  // 4. Connect to Mongoose (MongoDB)
+  mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+      console.log('Connected to MongoDB');
+      // 5. Start the Express server
+      app.listen(port, () => {
+        console.log(`Server running on http://localhost:${port}${server.graphqlPath}`);
+      });
+    })
+    .catch((err) => {
+      console.log('MongoDB connection error:', err);
+    });
+}
 
-
+startServer();
