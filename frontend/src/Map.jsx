@@ -1,8 +1,10 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import PiCard from './components/PiCard-node';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
+import { gql } from '@apollo/client/core';
+import './Map.css'
 
 const GET_FLEET = gql`
   query GetFleet {
@@ -42,7 +44,7 @@ export default function Map() {
   const [edges, setEdges] = useState([]);
 
   // When data arrives, update the nodes state
-  useMemo(() => {
+  useEffect(() => {
     if (initialNodes.length > 0) {
       setNodes(initialNodes);
     }
@@ -76,6 +78,7 @@ export default function Map() {
         fitView
         className='map'
       />
+      <h1 className='title'>Pi Array</h1>
     </div>
   );
 }
