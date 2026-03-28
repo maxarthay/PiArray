@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo, useEffect } from 'react';
-import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge } from '@xyflow/react';
+import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge, Background, BackgroundVariant } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import PiCard from './components/PiCard-node';
+import PiCard from './PiCard-node';
 import { useQuery } from '@apollo/client/react';
 import { gql } from '@apollo/client/core';
 import './Map.css'
@@ -67,7 +67,7 @@ export default function Map() {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+    <div style={{ width: 'calc(100vw - 64px)', height: '100vh', marginLeft: '64px', backgroundColor: '#020617' }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -77,8 +77,10 @@ export default function Map() {
         onConnect={onConnect}
         fitView
         className='map'
-      />
-      <h1 className='title'>Pi Array</h1>
+        colorMode="dark"
+      >
+        <Background bgColor="#F2F2F2 " variant={BackgroundVariant.Dots} gap={32} size={1} color="#000000" />
+      </ReactFlow>
     </div>
   );
 }

@@ -1,0 +1,71 @@
+.custom-sidebar {
+    background: linear-gradient(0deg, #0487D9, #99E2F2) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4);
+    
+    /* Custom folding logic */
+    width: 64px !important;
+    overflow-x: hidden !important;
+    white-space: nowrap;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.custom-sidebar:hover {
+    width: 256px !important;
+}
+
+.header-container {
+    padding: 1.5rem 1rem;
+}
+
+.header-brand {
+    font-size: 1.75rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    background: #F2F2F2;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transition: opacity 0.2s ease, margin 0.2s ease;
+    margin-left: -1rem;
+}
+
+.custom-sidebar:hover .header-brand {
+    opacity: 1;
+    margin-left: 0.5rem;
+}
+
+.custom-sidebar .nav-item {
+    margin: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.custom-sidebar .nav-link {
+    font-weight: 500;
+    color: #F2F2F2;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.custom-sidebar .nav-icon {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-right: 1.2rem;
+    color: #F2F2F2;
+    margin-left: -0.25rem;
+}
+
+.custom-sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    transform: translateX(4px);
+}

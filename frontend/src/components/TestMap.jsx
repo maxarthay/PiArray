@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import PiCard from './components/PiCard-node';
+import PiCard from './PiCard-node';
 
 // Define the custom node type for the Map
 const nodeTypes = {

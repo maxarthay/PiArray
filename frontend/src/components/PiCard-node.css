@@ -1,15 +1,141 @@
-/* .pi-card {
-    
-    width: 10rem;
-    padding: 1.5rem;
-    margin: 1rem;
+.pi-node-wrapper {
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.pi-node-wrapper:hover {
+    transform: translateY(-4px);
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+}
+
+.pi-card {
+    background: rgba(15, 23, 42, 0.85); /* slate-900 */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px;
+    width: 260px;
+    color: #f8fafc;
+    overflow: hidden;
+}
+
+.pi-card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.pi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pi-name {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.pi-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.pi-id-badge {
+    margin-bottom: 0.5rem;
+}
+
+.pi-id-badge .badge {
+    font-weight: 500;
+    background-color: rgba(255,255,255,0.1) !important;
+    color: #cbd5e1;
+}
+
+.pi-script {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #94a3b8;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.85rem;
+}
+
+.pi-icon {
+    width: 16px;
+    height: 16px;
+    color: #38bdf8; /* sky-400 */
+}
+
+.script-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Custom handles for ReactFlow */
+.handle-top, .handle-bottom {
+    background: #475569 !important;
+    border: 2px solid #0f172a !important;
+    width: 10px !important;
+    height: 10px !important;
+}
+
+/* Offcanvas Styling */
+.pi-offcanvas {
+    background-color: #020617 !important; /* match map base */
+    color: #f8fafc !important;
+    border-left: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.offcanvas-content {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
 
-    background-color: white;
-    border-radius: 12px;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    
-} */
+.offcanvas-name {
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+}
+
+.detail-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detail-row strong {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.detail-row span {
+    font-size: 1rem;
+    color: #f1f5f9;
+}
+
+.code-block {
+    background: rgba(0,0,0,0.3);
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-family: monospace;
+    color: #38bdf8 !important;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
