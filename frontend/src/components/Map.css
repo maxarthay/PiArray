@@ -1,5 +1,8 @@
-/* .map {
-  background-color: transparent;
-  margin-top: 0;
-  padding-top: 0;
-} */
+.group-instruction {
+  position: absolute;
+  bottom: 5px;
+  left: 50px;
+  z-index: 1000;
+  color: #64748b;
+  font-size: 0.875rem;
+}

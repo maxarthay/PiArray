@@ -1,0 +1,82 @@
+.right-sidebar {
+    background-color: #ffffff;
+    border-left: 1px solid #e2e8f0;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.03);
+    width: 240px !important;
+}
+
+.right-sidebar .header-container {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #e2e8f0 !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.right-sidebar .header-container h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.offcanvas-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.offcanvas-name {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    color: #0f172a;
+}
+
+.detail-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row strong {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.detail-row span {
+    font-size: 0.9rem;
+    color: #0f172a;
+    font-weight: 500;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+.code-block {
+    background: #f8fafc;
+    padding: 0.6rem;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1;
+    font-size: 0.8rem !important;
+    font-weight: 500;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+.detail-badge {
+    font-weight: 600;
+    font-size: 0.75rem;
+    border: 1px solid transparent;
+}

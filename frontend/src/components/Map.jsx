@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo, useEffect } from 'react';
 import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge, Background, BackgroundVariant } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import PiCard from './PiCard-node';
+import DetailSidebar from './DetailSidebar';
 import { useQuery } from '@apollo/client/react';
 import { gql } from '@apollo/client/core';
 import './Map.css'
@@ -42,6 +43,7 @@ export default function Map() {
 
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
+  const [selectedPi, setSelectedPi] = useState(null);
 
   // When data arrives, update the nodes state
   useEffect(() => {
@@ -63,24 +65,38 @@ export default function Map() {
     [],
   );
 
+  const onNodeClick = useCallback((event, node) => {
+    setSelectedPi(node.data.pi);
+  }, []);
+
+  const onPaneClick = useCallback(() => {
+    setSelectedPi(null);
+  }, []);
+
   if (loading) return <p>Loading fleet...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div style={{ width: 'calc(100vw - 64px)', height: '100vh', marginLeft: '64px', backgroundColor: '#020617' }}>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        nodeTypes={nodeTypes}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        fitView
-        className='map'
-        colorMode="dark"
-      >
-        <Background bgColor="#F2F2F2 " variant={BackgroundVariant.Dots} gap={32} size={1} color="#000000" />
-      </ReactFlow>
-    </div>
+    <>
+      <div style={{ width: 'calc(100vw - 48px)', height: '100vh', marginLeft: '48px', backgroundColor: '#f8fafc' }}>
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          nodeTypes={nodeTypes}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          onNodeClick={onNodeClick}
+          onPaneClick={onPaneClick}
+          fitView
+          className='map'
+          colorMode="light"
+        >
+          <Background bgColor="#f8fafc" variant={BackgroundVariant.Dots} gap={32} size={1} color="#cbd5e1" />
+        </ReactFlow>
+      </div>
+      <DetailSidebar pi={selectedPi} visible={!!selectedPi} onClose={() => setSelectedPi(null)} />
+      <p className="group-instruction">Shift + Click + Drag to create a group</p>
+    </>
   );
 }
