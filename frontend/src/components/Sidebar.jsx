@@ -1,6 +1,6 @@
 import { CSidebar, CSidebarNav, CNavItem, CSidebarBrand, CSidebarHeader } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-import { cilHome, cilList, cilSettings } from '@coreui/icons';
+import { cilHome, cilList, cilSettings, cilMap } from '@coreui/icons';
 import '@coreui/coreui/dist/css/coreui.min.css';
 import './Sidebar.css';
 
@@ -27,13 +27,13 @@ export default function Sidebar() {
                     <CIcon customClassName="nav-icon" icon={cilHome} />
                     Home
                 </CNavItem>
-                <CNavItem href="#">
+                <CNavItem href="/dashboard">
                     <CIcon customClassName="nav-icon" icon={cilList} />
-                    Fleet Status
+                    Dashboard
                 </CNavItem>
-                <CNavItem href="#">
-                    <CIcon customClassName="nav-icon" icon={cilSettings} />
-                    Settings
+                <CNavItem href="/map">
+                    <CIcon customClassName="nav-icon" icon={cilMap} />
+                    Map
                 </CNavItem>
             </CSidebarNav>
         </CSidebar>
