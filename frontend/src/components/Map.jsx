@@ -4,23 +4,8 @@ import '@xyflow/react/dist/style.css';
 import PiCard from './PiCard-node';
 import DetailSidebar from './DetailSidebar';
 import { useQuery } from '@apollo/client/react';
-import { gql } from '@apollo/client/core';
 import './Map.css'
-
-const GET_FLEET = gql`
-  query GetFleet {
-    fleet {
-      id
-      name
-      model
-      ipAddress
-      isOnline
-      cpuUsage
-      uptime
-      currScript
-    }
-  }
-`;
+import { GET_FLEET } from './queries';
 
 // nodeTypes must be defined outside the component to avoid re-renders
 const nodeTypes = {

@@ -1,0 +1,23 @@
+.pi-card-dashboard {
+    width: 240px;
+    height: 120px;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    margin: 10px;
+    left: 150px;
+}
+
+.pi-card-dashboard:hover {
+    border-color: #94a3b8 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.pi-card-dashboard .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #0f172a;
+}

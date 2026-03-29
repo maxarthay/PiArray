@@ -20,7 +20,6 @@ async function startServer() {
   await server.start();
 
   // 3. Connect Apollo to Express
-  // This essentially creates the /graphql endpoint where the UI can send requests
   server.applyMiddleware({ app });
 
   // 4. Connect to Mongoose (MongoDB)

@@ -37,13 +37,15 @@ module.exports = {
 
     Mutation: {
         // inside here would go all your mutations
-        async registerPi(_, { id, name, model, groupId = null }) {
+        async registerPi(_, { name, ipAddress, model, groupId = null }) {
             try {
                 const pi = new RaspberryPi({
-                    id,
                     name,
+                    ipAddress,
                     model,
-                    groupId
+                    groupId,
+                    isOnline: false,
+                    cpuUsage: 0,
                 });
                 await pi.save();
                 return pi;

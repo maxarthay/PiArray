@@ -11,19 +11,19 @@ const { gql } = require('apollo-server-express');
 // An object type represents a kind of object you can fetch from your project.
 //  which defines the fields and their data types.
 // type Artist {
-    //     id: ID!
-    //     name: String!
-    //     genre: String
- // }
+//     id: ID!
+//     name: String!
+//     genre: String
+// }
 
- //The Query type defines all the available queries / data grabbing operations
-    //  query GetHeroName {
-    //   hero {
-    //     name
-    //   }
-    // }
+//The Query type defines all the available queries / data grabbing operations
+//  query GetHeroName {
+//   hero {
+//     name
+//   }
+// }
 
- // The Mutation type defines all the available mutations aka the changes the users can make to the data
+// The Mutation type defines all the available mutations aka the changes the users can make to the data
 
 //  type Mutation {
 //   updateHumanName(id: ID!, name: String!): Human
@@ -60,7 +60,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        registerPi(id: ID!, name: String!, model: String!, groupId: ID): RaspberryPi
+        registerPi(name: String!, ipAddress: String!, model: String!, groupId: ID): RaspberryPi
         removePi(id: ID!): RaspberryPi
         rebootPi(id: ID!): Boolean
         changeOnlineStatus(id: ID!, isOnline: Boolean!): Boolean
