@@ -2,8 +2,8 @@ const Group = require('../../models/Group');
 
 module.exports = {
     Query: {
-        // According to TypeDefs.js: group: [Group]
-        async group() {
+        // According to TypeDefs.js: groups: [Group]
+        async groups() {
             try {
                 return await Group.find();
             } catch (error) {

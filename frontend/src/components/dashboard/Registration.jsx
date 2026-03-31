@@ -25,6 +25,7 @@ export default function Registration({ visible, setVisible }) {
                 groupId: group || null,
             },
         });
+        setName(''); setIpAddress(''); setId(''); setModel(''); setGroup('');
         setVisible(false);
 
     }

@@ -23,15 +23,6 @@ module.exports = {
             } catch (error) {
                 throw new Error('Failed to fetch pi: ' + error.message);
             }
-        },
-
-        async group(_, { id }) {
-            try {
-                const group = await Group.findById(id);
-                return group;
-            } catch (error) {
-                throw new Error('Failed to fetch group: ' + error.message);
-            }
         }
     },
 
@@ -39,11 +30,29 @@ module.exports = {
         // inside here would go all your mutations
         async registerPi(_, { name, ipAddress, model, groupId = null }) {
             try {
+                let resolvedGroupId = null;
+
+                if (groupId) {
+                    // Check if it's a valid ObjectId; if not, treat it as a group name
+                    const isObjectId = /^[0-9a-fA-F]{24}$/.test(groupId);
+                    if (isObjectId) {
+                        resolvedGroupId = groupId;
+                    } else {
+                        // Look up by name, create if it doesn't exist
+                        let group = await Group.findOne({ name: groupId });
+                        if (!group) {
+                            group = new Group({ name: groupId });
+                            await group.save();
+                        }
+                        resolvedGroupId = group._id;
+                    }
+                }
+
                 const pi = new RaspberryPi({
                     name,
                     ipAddress,
                     model,
-                    groupId,
+                    groupId: resolvedGroupId,
                     isOnline: false,
                     cpuUsage: 0,
                 });
@@ -96,6 +105,40 @@ module.exports = {
                 return pi;
             } catch (error) {
                 throw new Error('Failed to run script: ' + error.message);
+            }
+        },
+
+        async updatePiPosition(_, { id, positionX, positionY }) {
+            try {
+                const pi = await RaspberryPi.findByIdAndUpdate(
+                    id,
+                    { positionX, positionY },
+                    { new: true }
+                );
+                if (!pi) throw new Error('Pi not found');
+                return pi;
+            } catch (error) {
+                throw new Error('Failed to update position: ' + error.message);
+            }
+        }
+    },
+
+    RaspberryPi: {
+        async group(parent) {
+            if (!parent.groupId) return null;
+            try {
+                return await Group.findById(parent.groupId);
+            } catch (error) {
+                return null;
+            }
+        },
+        async groupName(parent) {
+            if (!parent.groupId) return null;
+            try {
+                const group = await Group.findById(parent.groupId);
+                return group ? group.name : null;
+            } catch (error) {
+                return null;
             }
         }
     }

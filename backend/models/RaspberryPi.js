@@ -8,7 +8,9 @@ const piSchema = new Schema({
     currScript: String,
     cpuUsage: Number,
     uptime: Number,
-    groupId: { type: Schema.Types.ObjectId, ref: 'Group' }
+    groupId: { type: Schema.Types.ObjectId, ref: 'Group' },
+    positionX: { type: Number, default: null },
+    positionY: { type: Number, default: null },
 })
 
 module.exports = model('RaspberryPi', piSchema);

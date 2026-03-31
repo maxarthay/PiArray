@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import RegistrationForm from "./Registration";
 
-const FILTERS = ["All", "Online", "Offline", "Pi 4B", "Pi Zero"];
+const STATIC_FILTERS = ["All", "Online", "Offline", "Pi 4B", "Pi Zero"];
 
 const STATUS_STYLES = {
     online: { dot: "#1D9E75", badge: { background: "#E1F5EE", color: "#0F6E56" } },
@@ -12,28 +12,39 @@ const STATUS_STYLES = {
 function filterPis(pis, filter, search) {
     let result = pis;
     if (filter === "Online") result = result.filter(pi => pi.isOnline);
-    if (filter === "Offline") result = result.filter(pi => !pi.isOnline);
-    if (filter === "Pi 4B") result = result.filter(pi => pi.model?.includes("4B"));
-    if (filter === "Pi Zero") result = result.filter(pi => pi.model?.toLowerCase().includes("zero"));
+    else if (filter === "Offline") result = result.filter(pi => !pi.isOnline);
+    else if (filter === "Pi 4B") result = result.filter(pi => pi.model?.includes("4B"));
+    else if (filter === "Pi Zero") result = result.filter(pi => pi.model?.toLowerCase().includes("zero"));
+    else if (filter !== "All") {
+        // Treat as a group name filter
+        result = result.filter(pi => pi.groupName === filter);
+    }
     if (search) {
         const q = search.toLowerCase();
         result = result.filter(pi =>
             pi.name?.toLowerCase().includes(q) ||
             pi.model?.toLowerCase().includes(q) ||
-            pi.ip?.includes(q)
+            pi.ipAddress?.toLowerCase().includes(q) ||
+            pi.groupName?.toLowerCase().includes(q)
         );
     }
     return result;
 }
 
-export default function DashboardGrid({ pis = [] }) {
+export default function DashboardGrid({ pis = [], groups = [] }) {
     const [search, setSearch] = useState("");
     const [activeFilter, setActiveFilter] = useState("All");
-    const [visible, setVisible] = useState(false); // ← was missing
+    const [visible, setVisible] = useState(false);
 
     const online = pis.filter(pi => pi.isOnline).length;
     const offline = pis.filter(pi => !pi.isOnline).length;
     const visible_pis = filterPis(pis, activeFilter, search);
+
+    // Build filter list: static filters + dynamic group names
+    const FILTERS = useMemo(() => {
+        const groupNames = groups.map(g => g.name).filter(Boolean);
+        return [...STATIC_FILTERS, ...groupNames];
+    }, [groups]);
 
     return (
         <>
@@ -139,6 +150,12 @@ function PiCard({ pi }) {
                 <div>
                     <div style={{ fontSize: 14, fontWeight: 600 }}>{pi.name}</div>
                     <div style={{ fontSize: 12, color: "#6b7280", marginTop: 2 }}>{pi.model}</div>
+                    {pi.groupName && (
+                        <div style={{ fontSize: 11, color: "#9ca3af", marginTop: 2, display: "flex", alignItems: "center", gap: 4 }}>
+                            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#6366f1", display: "inline-block", flexShrink: 0 }} />
+                            {pi.groupName}
+                        </div>
+                    )}
                 </div>
                 <div style={{ width: 8, height: 8, borderRadius: "50%", background: dot, marginTop: 3, flexShrink: 0 }} />
             </div>

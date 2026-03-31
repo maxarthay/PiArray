@@ -38,11 +38,14 @@ const typeDefs = gql`
         name: String!
         model: String!
         group: Group
+        groupName: String
         ipAddress: String!
         isOnline: Boolean!
         currScript: String
         cpuUsage: Int!
         uptime: Int
+        positionX: Float
+        positionY: Float
     }
 
     type Group {
@@ -56,7 +59,7 @@ const typeDefs = gql`
     type Query {
         fleet: [RaspberryPi]
         pi(id: ID!): RaspberryPi
-        group: [Group]
+        groups: [Group]
     }
 
     type Mutation {
@@ -65,6 +68,7 @@ const typeDefs = gql`
         rebootPi(id: ID!): Boolean
         changeOnlineStatus(id: ID!, isOnline: Boolean!): Boolean
         runScript(id: ID!, script: String!): String
+        updatePiPosition(id: ID!, positionX: Float!, positionY: Float!): RaspberryPi
     }
     
 `;
