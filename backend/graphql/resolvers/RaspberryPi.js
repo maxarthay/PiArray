@@ -38,7 +38,6 @@ module.exports = {
                     if (isObjectId) {
                         resolvedGroupId = groupId;
                     } else {
-                        // Look up by name, create if it doesn't exist
                         let group = await Group.findOne({ name: groupId });
                         if (!group) {
                             group = new Group({ name: groupId });
@@ -85,28 +84,29 @@ module.exports = {
 
         */
 
-        // TODO: implement changeOnlineStatus from Raspberry Pi
-        async changeOnlineStatus(_, { id, isOnline }) {
-            try {
-                const pi = await RaspberryPi.findById(id);
-                pi.isOnline = isOnline;
-                await pi.save();
-                return pi;
-            } catch (error) {
-                throw new Error('Failed to change online status: ' + error.message);
-            }
-        },
+        // // TODO: implement changeOnlineStatus from Raspberry Pi
+        // async changeOnlineStatus(_, { id, isOnline }) {
+        //     try {
+        //         const pi = await RaspberryPi.findById(id);
+        //         pi.isOnline = isOnline;
+        //         await pi.save();
+        //         return pi;
+        //     } catch (error) {
+        //         throw new Error('Failed to change online status: ' + error.message);
+        //     }
+        // },
 
-        async runScript(_, { id, script }) {
-            try {
-                const pi = await RaspberryPi.findById(id);
-                pi.currScript = script;
-                await pi.save();
-                return pi;
-            } catch (error) {
-                throw new Error('Failed to run script: ' + error.message);
-            }
-        },
+        // TODO
+        // async runScript(_, { id, script }) {
+        //     try {
+        //         const pi = await RaspberryPi.findById(id);
+        //         pi.currScript = script;
+        //         await pi.save();
+        //         return pi;
+        //     } catch (error) {
+        //         throw new Error('Failed to run script: ' + error.message);
+        //     }
+        // },
 
         async updatePiPosition(_, { id, positionX, positionY }) {
             try {

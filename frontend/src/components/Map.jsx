@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable react-hooks/preserve-manual-memoization */
 import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge, Background, BackgroundVariant, Controls } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
@@ -23,7 +25,6 @@ export default function Map() {
   const [selectedGroup, setSelectedGroup] = useState('All');
 
 
-  // Debounce timer ref for position saves
   const saveTimers = useRef({});
 
   const groups = groupsData?.groups || [];
