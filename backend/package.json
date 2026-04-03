@@ -22,6 +22,7 @@
     "express": "^4.22.1",
     "graphql": "^16.11.0",
     "mongodb": "^7.1.0",
-    "mongoose": "^8.18.0"
+    "mongoose": "^8.18.0",
+    "node-ssh": "^13.2.1"
   }
 }

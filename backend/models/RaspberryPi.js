@@ -7,6 +7,8 @@ const piSchema = new Schema({
     isOnline: Boolean,
     currScript: String,
     cpuUsage: Number,
+    cpuHistory: { type: [Number], default: [] },
+    tempCelsius: { type: Number, default: null },
     uptime: Number,
     groupId: { type: Schema.Types.ObjectId, ref: 'Group' },
     positionX: { type: Number, default: null },

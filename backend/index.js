@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const { MONGODB_URI } = require('./config');
 const typeDefs = require('./graphql/TypeDefs');
 const resolvers = require('./graphql/resolvers');
+const { startPolling } = require('./pollingLoop');
 
 
 const app = express();
@@ -27,6 +28,7 @@ async function startServer() {
     .then(() => {
       console.log('Connected to MongoDB');
       // 5. Start the Express server
+      startPolling(5000);
       app.listen(port, () => {
         console.log(`Server running on http://localhost:${port}${server.graphqlPath}`);
       });

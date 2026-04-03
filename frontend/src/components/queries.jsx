@@ -20,6 +20,8 @@ export const GET_FLEET = gql`
       ipAddress
       isOnline
       cpuUsage
+      cpuHistory
+      tempCelsius
       uptime
       currScript
       groupName
@@ -46,4 +48,12 @@ export const GET_GROUPS = gql`
       name
     }
   }
+`;
+
+export const REMOVE_PI = gql`
+    mutation RemovePi($id: ID!) {
+        removePi(id: $id) {
+            id
+        }
+    }
 `;

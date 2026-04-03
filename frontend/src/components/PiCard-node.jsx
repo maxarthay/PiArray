@@ -1,7 +1,7 @@
 import { Handle, Position } from '@xyflow/react';
-import { 
-    CCard, 
-    CCardBody, 
+import {
+    CCard,
+    CCardBody,
     CBadge
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react';
@@ -18,18 +18,24 @@ function PiCard({ data }) {
     return (
         <div className="pi-node-wrapper">
             <Handle type="target" position={Position.Top} className="handle-top" />
-            
+
             <CCard className="pi-card border-0">
                 <CCardBody className="pi-card-body">
                     <div className="pi-header">
                         <h5 className="pi-name">{pi.name}</h5>
-                        <div 
-                            className="pi-status-dot" 
+                        <div
+                            className="pi-status-dot"
                             style={{ backgroundColor: statusColor }}
                             title={isOnline ? 'Online' : 'Offline'}
                         />
                     </div>
-                    
+                    {pi.groupName && (
+                        <div style={{ fontSize: 11, color: "#9ca3af", marginTop: 2, display: "flex", alignItems: "center", gap: 4 }}>
+                            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#6366f1", display: "inline-block", flexShrink: 0 }} />
+                            {pi.groupName}
+                        </div>
+                    )}
+
                     <div className="pi-id-badge">
                         <CBadge color="light" textColor="dark" shape="rounded">ID: {pi.id}</CBadge>
                     </div>

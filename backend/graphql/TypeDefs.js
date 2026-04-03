@@ -43,6 +43,8 @@ const typeDefs = gql`
         isOnline: Boolean!
         currScript: String
         cpuUsage: Int!
+        cpuHistory: [Int]
+        tempCelsius: Float
         uptime: Int
         positionX: Float
         positionY: Float

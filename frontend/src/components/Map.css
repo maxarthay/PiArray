@@ -1,7 +1,7 @@
 .group-instruction {
   position: absolute;
   bottom: 5px;
-  left: 150px;
+  left: 250px;
   z-index: 1000;
   color: #64748b;
   font-size: 0.875rem;

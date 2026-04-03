@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
-import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge, Background, BackgroundVariant } from '@xyflow/react';
+import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge, Background, BackgroundVariant, Controls } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import PiCard from './PiCard-node';
 import DetailSidebar from './DetailSidebar';
@@ -21,6 +21,7 @@ export default function Map() {
   const [edges, setEdges] = useState([]);
   const [selectedPi, setSelectedPi] = useState(null);
   const [selectedGroup, setSelectedGroup] = useState('All');
+
 
   // Debounce timer ref for position saves
   const saveTimers = useRef({});
@@ -180,6 +181,7 @@ export default function Map() {
           colorMode="light"
         >
           <Background bgColor="#f8fafc" variant={BackgroundVariant.Dots} gap={32} size={1} color="#cbd5e1" />
+          <Controls />
         </ReactFlow>
       </div>
       <DetailSidebar pi={selectedPi} visible={!!selectedPi} onClose={() => setSelectedPi(null)} />
