@@ -45,9 +45,10 @@ export default function DashboardGrid({ pis = [], groups = [] }) {
 
     // Build filter list: static filters + dynamic group names
     const FILTERS = useMemo(() => {
-        const groupNames = groups.map(g => g.name).filter(Boolean);
+        const activeGroups = new Set(pis.map(pi => pi.groupName).filter(Boolean));
+        const groupNames = groups.map(g => g.name).filter(name => activeGroups.has(name));
         return [...STATIC_FILTERS, ...groupNames];
-    }, [groups]);
+    }, [groups, pis]);
 
     return (
         <>

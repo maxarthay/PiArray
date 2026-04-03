@@ -28,6 +28,13 @@ export default function Map() {
 
   const groups = groupsData?.groups || [];
 
+  // Only show groups that are actually present on at least one Pi
+  const activeGroups = useMemo(() => {
+    if (!data?.fleet) return [];
+    const activeNames = new Set(data.fleet.map(pi => pi.groupName).filter(Boolean));
+    return groups.filter(g => activeNames.has(g.name));
+  }, [groups, data?.fleet]);
+
   // Build initial nodes from fetched data, using saved positions
   const initialNodes = useMemo(() => {
     if (!data?.fleet) return [];
@@ -140,7 +147,7 @@ export default function Map() {
               }}
             >
               <option value="All">All groups</option>
-              {groups.map(g => (
+              {activeGroups.map(g => (
                 <option key={g.id} value={g.name}>{g.name}</option>
               ))}
             </select>
